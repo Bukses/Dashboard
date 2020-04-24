@@ -4,10 +4,8 @@ import Adapter
 import Model
 import SpaceItemdecoration
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,23 +28,9 @@ class MainActivity : AppCompatActivity() {
         adapter=Adapter(this,itemList)
 
         val layoutManager = GridLayoutManager(this, Common.NUM_OF_COLUMN, RecyclerView.VERTICAL, false)
-        layoutManager.spanSizeLookup=object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(i: Int): Int {
-                return if (adapter !=null) {
-                    when (adapter!!.getItemViewType(i))
-                    {
-                        1 -> 1
-                        0 -> Common.NUM_OF_COLUMN
-                        else -> -1
-                    }
-                }else {
-                    -1
-                }
-            }
 
-        }
         recyclerview.layoutManager=layoutManager
-        recyclerview.addItemDecoration(SpaceItemdecoration(4))
+        recyclerview.addItemDecoration(SpaceItemdecoration(2))
 
         recyclerview.adapter=adapter
 
@@ -54,18 +38,25 @@ class MainActivity : AppCompatActivity() {
     private fun initData() {
         itemList=ArrayList()
 
-        itemList.add(Model(R.drawable.android_nb, "Android"))
-        itemList.add(Model(R.drawable.browser_nb, "Browser"))
-        itemList.add(Model(R.drawable.twitter_nb, "Twitter"))
-        itemList.add(Model(R.drawable.youtube, "Youtube"))
-        itemList.add(Model(R.drawable.facebook_nb, "Facebook"))
-        itemList.add(Model(R.drawable.github_nb, "Github"))
-        itemList.add(Model(R.drawable.instagram_nb, "Instagram"))
-        itemList.add(Model(R.drawable.linkedin, "Linkedin"))
-        itemList.add(Model(R.drawable.playstore_nb, "Playstore"))
-        itemList.add(Model(R.drawable.calendar_nb, "Calendar"))
-        itemList.add(Model(R.drawable.contact_nb, "Contact"))
-        itemList.add(Model(R.drawable.skype_nb, "Skype"))
+        itemList.add(Model(R.drawable.android, "Android", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.chrome, "Browser", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.twitter, "Twitter", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.youtube, "Youtube", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.facebook, "Facebook", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.github, "Github", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.instagram, "Instagram", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.linkedin1, "Linkedin", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.playstore, "Playstore", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.calendar, "Calendar", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.contact, "Contact", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.skype, "Skype", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.bitbucket, "Bitbucket", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.dribbble, "Dribbble", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.email, "E-mail", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.google, "Google", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.google_plus, "Google plus", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.skype, "Skype", uri = "https://android.com/"))
+        itemList.add(Model(R.drawable.whatsapp, "Whatsapp", uri = "https://android.com/"))
     }
 
     override fun onStart() {
@@ -80,11 +71,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-    override fun onPause()  {
-        super.onPause()
-        Log.i("", "onPause")
-    }
 
     override fun onStop() {
         super.onStop()

@@ -1,11 +1,13 @@
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydashboard.R
 import java.lang.reflect.Type
@@ -34,8 +36,11 @@ class Adapter(internal var context: Context,
             itemView.setOnClickListener(this)
         }
 
-        override fun onClick(v: View?) {
+        public override fun onClick(v: View?) {
             iCardItemClickListener?.onCartItemClick(v, adapterPosition)
+
+
+
         }
 
     }
@@ -56,11 +61,9 @@ class Adapter(internal var context: Context,
         holder.setEvent(object : ICardItemClickListener {
             @SuppressLint("ShowToast")
             override fun onCartItemClick(view: View?, position: Int) {
-                Toast.makeText(
-                    context,
+                Toast.makeText(context,
                     "Clicked: " + myItems[position].description,
-                    Toast.LENGTH_SHORT
-                )
+                    Toast.LENGTH_SHORT).show()
             }
         })
     }
